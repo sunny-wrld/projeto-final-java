@@ -1,33 +1,55 @@
 package entidades;
+
+import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.Duration;
+import java.util.List;
+import java.util.ArrayList;
 
-public class Reserva {
-        private int idReserva;
-        private Cliente cliente;
-        private Espaco espaco;
-        private LocalDate dataReserva;
-        private LocalTime horaInicio;
-        private LocalTime horaFim;
-        private List<ServicosAdicional> servicpsAdcionais;
-        private double valorTotal;
+public class Reserva implements Serializable {
+    private static final long serialVersionUID = 1L;
+    private static int contadorId = 1;
 
-    }
+    private int id;
+    private Cliente cliente;
+    private Espaco espaco;
+    private LocalDate dataReserva;
+    private LocalTime horaInicio;
+    private LocalTime horaFim;
+    private List<ServicoAdicional> servicosAdicionais;
+    private double valorBase;
 
-    public Reserva(int idReserva, Cliente cliente, Espaco espaco, LocalDate dataReserva, LocalTime horaInicio, LocalTime horaFim, list<ServicosAdicional> servicpsAdcionais, double valorTotal) {
-        this.idReserva = idReserva;
+    public Reserva(Cliente cliente, Espaco espaco, LocalDate dataReserva,
+                   LocalTime horaInicio, LocalTime horaFim, double valorBase) {
+        this.id = contadorId++;
         this.cliente = cliente;
         this.espaco = espaco;
         this.dataReserva = dataReserva;
         this.horaInicio = horaInicio;
         this.horaFim = horaFim;
-        this.servicpsAdcionais = servicpsAdcionais;
-        this.valorTotal = valorTotal;
-
-
+        this.servicosAdicionais = new ArrayList<>();
+        this.valorBase = valorBase;
     }
 
-    public int getIdReserva() {
-        return idReserva;
+    public double calcularValorTotal() {
+        double total = valorBase;
+        for (ServicoAdicional servico : servicosAdicionais) {
+            total += servico.getValorTotal();
+        }
+        return total;
+    }
+
+    public void adicionarServico(ServicoAdicional servico) {
+        this.servicosAdicionais.add(servico);
+    }
+
+    public void removerServico(ServicoAdicional servico) {
+        this.servicosAdicionais.remove(servico);
+    }
+
+    public int getId() {
+        return id;
     }
 
     public Cliente getCliente() {
@@ -70,20 +92,32 @@ public class Reserva {
         this.horaFim = horaFim;
     }
 
-    public List<ServicosAdicional> getServicpsAdcionais() {
-        return servicpsAdcionais;
+    public List<ServicoAdicional> getServicosAdicionais() {
+        return servicosAdicionais;
     }
 
-    public void setServicpsAdcionais(List<ServicosAdicional> servicpsAdcionais) {
-        this.servicpsAdcionais = servicpsAdcionais;
+    public void setServicosAdicionais(List<ServicoAdicional> servicosAdicionais) {
+        this.servicosAdicionais = servicosAdicionais;
     }
 
-    public double getValorTotal() {
-        return valorTotal;
+    public double getValorBase() {
+        return valorBase;
     }
 
-    public void setValorTotal(double valorTotal) {
-        this.valorTotal = valorTotal;
+    public void setValorBase(double valorBase) {
+        this.valorBase = valorBase;
     }
 
+    @Override
+    public String toString() {
+        return "Reserva{" +
+                "id=" + id +
+                ", cliente=" + cliente.getNome() +
+                ", espaco=" + espaco.getNome() +
+                ", dataReserva=" + dataReserva +
+                ", horaInicio=" + horaInicio +
+                ", horaFim=" + horaFim +
+                ", valorTotal=" + calcularValorTotal() +
+                '}';
+    }
 }

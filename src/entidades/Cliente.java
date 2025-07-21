@@ -1,5 +1,8 @@
 package entidades;
 
+import java.io.Serializable;
+import java.time.LocalDate;
+
 public class Cliente {
     private int idCliente;
     private String cpf;

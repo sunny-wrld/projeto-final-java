@@ -1,6 +1,6 @@
 package excecoes;
 
-public class ClienteJaCadastradoException {
+public class ClienteJaCadastradoException extends Exception {
 
     public ClienteJaCadastradoException(String message) {
         super(message);
@@ -13,5 +13,4 @@ public class ClienteJaCadastradoException {
     public ClienteJaCadastradoException(Throwable cause) {
         super(cause);
     }
-
 }
