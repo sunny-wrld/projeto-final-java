@@ -1,7 +1,10 @@
 package entidades;
 
-public interface ServicoAdicional {
-    String geetDescricao();
-    double getValorTotal();
+import java.io.Serializable;
 
+public interface ServicoAdicional extends Serializable {
+
+    String getDescricao();
+
+    double getValorTotal();
 }
