@@ -1,75 +1,61 @@
 package controle;
 
-import entidades.Espaco;
+import entidades.Cliente;
 import excecoes.FalhaPersistenciaException;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.HashMap;
+import java.util.Map;
 
-// Repositório responsável por armazenar espaços de coworking em arquivo de texto
-public class RepositorioEspacos {
+public class RepositorioClientes {
 
-    private List<Espaco> listaDeEspacos;
+    // Mapa que guarda os clientes, onde o CPF é a chave
+    private Map<String, Cliente> clientes = new HashMap<>();
 
-    public RepositorioEspacos() {
-        listaDeEspacos = new ArrayList<>();
+    // Adiciona um cliente no mapa
+    public void adicionarCliente(Cliente cliente) {
+        clientes.put(cliente.getCpf(), cliente);
     }
 
-    public void adicionarEspaco(Espaco espaco) {
-        listaDeEspacos.add(espaco);
+    // Busca um cliente pelo CPF
+    public Cliente buscarCliente(String cpf) {
+        return clientes.get(cpf);
     }
 
-    public Espaco buscarEspaco(String id) {
-        for (Espaco e : listaDeEspacos) {
-            if (e.getId().equals(id)) {
-                return e;
-            }
-        }
-        return null;
-    }
-
+    // Mostra todos os clientes cadastrados no console
     public void listarTodos() {
-        for (Espaco espaco : listaDeEspacos) {
-            System.out.println(espaco);
+        for (Cliente c : clientes.values()) {
+            System.out.println(c);
         }
     }
 
-    public void salvarEmArquivo(String nomeArquivo) throws FalhaPersistenciaException {
-        try (BufferedWriter escritor = new BufferedWriter(new FileWriter(nomeArquivo))) {
-            for (Espaco e : listaDeEspacos) {
-                escritor.write(e.getId() + "," +
-                        e.getNome() + "," +
-                        e.getValorHora() + "," +
-                        e.estaDisponivel()); // supondo método boolean
-                escritor.newLine();
+    // Salva os dados dos clientes em um arquivo .txt
+    public void salvarArquivoCliente(String nomeArquivo) throws FalhaPersistenciaException {
+        try (BufferedWriter gravador = new BufferedWriter(new FileWriter(nomeArquivo))) {
+            for (Cliente c : clientes.values()) {
+                String linha = c.getCpf() + ";" + c.getNomeCliente() + ";" + c.getEmail();
+                gravador.write(linha);
+                gravador.newLine();
             }
         } catch (IOException e) {
-            throw new FalhaPersistenciaException("Erro ao salvar os espaços no arquivo.");
+            throw new FalhaPersistenciaException("Erro ao salvar os clientes no arquivo: " + nomeArquivo);
         }
     }
 
-    public void carregarDoArquivo(String nomeArquivo) throws FalhaPersistenciaException {
-        listaDeEspacos.clear();
-
-        try (Scanner leitor = new Scanner(new File(nomeArquivo))) {
-            while (leitor.hasNextLine()) {
-                String linha = leitor.nextLine();
-                String[] partes = linha.split(",");
-
-                if (partes.length >= 4) {
-                    String id = partes[0];
-                    String nome = partes[1];
-                    double valorHora = Double.parseDouble(partes[2]);
-                    boolean disponivel = Boolean.parseBoolean(partes[3]);
-
-                    Espaco espaco = new Espaco(id, nome, valorHora, disponivel); // adaptado
-                    listaDeEspacos.add(espaco);
+    // Carrega os dados dos clientes de um arquivo .txt
+    public void carregarArquivoCliente(String nomeArquivo) throws FalhaPersistenciaException {
+        clientes.clear();
+        try (BufferedReader leitor = new BufferedReader(new FileReader(nomeArquivo))) {
+            String linha;
+            while ((linha = leitor.readLine()) != null) {
+                String[] partes = linha.split(";");
+                if (partes.length == 3) {
+                    Cliente cliente = new Cliente(partes[0], partes[1], partes[2]);
+                    clientes.put(cliente.getCpf(), cliente);
                 }
             }
         } catch (IOException e) {
-            throw new FalhaPersistenciaException("Erro ao carregar os espaços do arquivo.");
+            throw new FalhaPersistenciaException("Erro ao carregar os clientes do arquivo: " + nomeArquivo);
         }
     }
 }

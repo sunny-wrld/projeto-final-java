@@ -34,18 +34,23 @@ public class RepositorioReservas {
         listaDeReservas.removeIf(r -> r.getNumero() == numero);
     }
 
-    public void listarTodas() {
+    public void listarTodasReservas() {
         for (Reserva r : listaDeReservas) {
             System.out.println(r);
         }
     }
 
-    public void salvarEmArquivo(String nomeArquivo) throws FalhaPersistenciaException {
+    // ✅ Método adicionado para facilitar a geração do número da próxima reserva
+    public int pegarQuantidadeReserva() {
+        return listaDeReservas.size();
+    }
+
+    public void salvarArquivoReserva(String nomeArquivo) throws FalhaPersistenciaException {
         try (BufferedWriter escritor = new BufferedWriter(new FileWriter(nomeArquivo))) {
             for (Reserva r : listaDeReservas) {
                 escritor.write(r.getNumero() + "," +
-                        r.getCpfCliente() + "," + // supondo método getCpfCliente()
-                        r.getIdEspaco() + "," +   // supondo método getIdEspaco()
+                        r.getCpfCliente() + "," +
+                        r.getIdEspaco() + "," +
                         r.getDataReserva() + "," +
                         r.getHoraInicio() + "," +
                         r.getHoraFim() + "," +
@@ -57,7 +62,7 @@ public class RepositorioReservas {
         }
     }
 
-    public void carregarDoArquivo(String nomeArquivo) throws FalhaPersistenciaException {
+    public void carregarArquivoReserva(String nomeArquivo) throws FalhaPersistenciaException {
         listaDeReservas.clear();
 
         try (Scanner leitor = new Scanner(new File(nomeArquivo))) {

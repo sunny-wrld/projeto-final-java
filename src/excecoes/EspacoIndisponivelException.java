@@ -2,11 +2,11 @@ package excecoes;
 
 public class EspacoIndisponivelException extends Exception {
 
-    public EspacoIndisponivelException(String message) {
-        super(message);
+    public EspacoIndisponivelException() {
+        super("O espaco selecionado ja ocupado no horario desejado.");
     }
 
-    public EspacoIndisponivelException(String message, Throwable cause) {
-        super(message, cause);
+    public EspacoIndisponivelException(String mensagem) {
+        super(mensagem);
     }
 }

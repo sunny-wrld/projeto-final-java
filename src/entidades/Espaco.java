@@ -48,7 +48,7 @@ public abstract class Espaco {
             status = "Indisponível";
         }
 
-        return getTipo() + ": " + nome + " | ID: " + id + " | R$ " + valorHora + "/hora | " + status;
+        return getTipo() + ": " + nome + " ID: " + id +
+                " R$ " + valorHora + "hora  " + status;
     }
-
 }

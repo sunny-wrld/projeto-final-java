@@ -2,21 +2,17 @@ package entidades;
 
 public class SalaReuniao extends Espaco {
 
+    private int capacidade;
     private boolean temProjetor;
     private boolean temWifi;
     private boolean temQuadro;
     private boolean temArcondicionado;
 
-    public SalaReuniao(String nome, double valorHora, int capacidade, boolean temProjetor, boolean temWifi, boolean temQuadro, boolean temArcondicionado) {
-        super(nome, valorHora, capacidade);
-        this.temProjetor = temProjetor;
-        this.temWifi = temWifi;
-        this.temQuadro = temQuadro;
-        this.temArcondicionado = temArcondicionado;
-    }
-
-    public SalaReuniao(int id, String nome, double valorHora, int capacidade, boolean disponivel, boolean temProjetor, boolean temWifi, boolean temQuadro, boolean temArcondicionado) {
-        super(id, nome, valorHora, capacidade, disponivel);
+    public SalaReuniao(String id, String nome, double valorHora, int capacidade,
+                       boolean disponivel, boolean temProjetor, boolean temWifi,
+                       boolean temQuadro, boolean temArcondicionado) {
+        super(id, nome, valorHora, disponivel);
+        this.capacidade = capacidade;
         this.temProjetor = temProjetor;
         this.temWifi = temWifi;
         this.temQuadro = temQuadro;
@@ -30,60 +26,38 @@ public class SalaReuniao extends Espaco {
 
     @Override
     public String getDescricaoCompleta() {
-        return "Sala de Reunião: " + getNome() + " | ID: " + getId() +
-                " | Valor por hora: R$ " + getValorHora() +
-                " | Capacidade: " + getCapacidade() +
-                " | Disponível: " + (isDisponivel() ? "Sim" : "Não") +
-                " | Projetor: " + (temProjetor ? "Sim" : "Não") +
-                " | WiFi: " + (temWifi ? "Sim" : "Não") +
-                " | Quadro: " + (temQuadro ? "Sim" : "Não") +
-                " | Ar Condicionado: " + (temArcondicionado ? "Sim" : "Não");
+        String descricao = "Sala de Reunião: " + getNome();
+        descricao += " Capacidade: " + capacidade;
+        descricao += " Tem projetor: " + temProjetor;
+        descricao += " Tem Wi-Fi: " + temWifi;
+        descricao += " Tem quadro: " + temQuadro;
+        descricao += " Tem ar-condicionado: " + temArcondicionado;
+        return descricao;
     }
 
-    public boolean isTemProjetor() {
+    public int getCapacidade() {
+        return capacidade;
+    }
+
+    public boolean getTemProjetor() {
         return temProjetor;
     }
 
-    public void setTemProjetor(boolean temProjetor) {
-        this.temProjetor = temProjetor;
-    }
-
-    public boolean isTemWifi() {
+    public boolean getTemWifi() {
         return temWifi;
     }
 
-    public void setTemWifi(boolean temWifi) {
-        this.temWifi = temWifi;
-    }
-
-    public boolean isTemQuadro() {
+    public boolean getTemQuadro() {
         return temQuadro;
     }
 
-    public void setTemQuadro(boolean temQuadro) {
-        this.temQuadro = temQuadro;
-    }
-
-    public boolean isTemArcondicionado() {
+    public boolean getTemArcondicionado() {
         return temArcondicionado;
-    }
-
-    public void setTemArcondicionado(boolean temArcondicionado) {
-        this.temArcondicionado = temArcondicionado;
     }
 
     @Override
     public String toString() {
-        return "SalaReuniao{" +
-                "id=" + getId() +
-                ", nome='" + getNome() + '\'' +
-                ", valorHora=" + getValorHora() +
-                ", capacidade=" + getCapacidade() +
-                ", disponivel=" + isDisponivel() +
-                ", temProjetor=" + temProjetor +
-                ", temWifi=" + temWifi +
-                ", temQuadro=" + temQuadro +
-                ", temArcondicionado=" + temArcondicionado +
-                '}';
+        return getId() + "," + getNome() + "," + getValorHora() + "," + estaDisponivel() + "," +
+                capacidade + "," + temProjetor + "," + temWifi + "," + temQuadro + "," + temArcondicionado;
     }
 }

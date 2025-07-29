@@ -2,15 +2,11 @@ package excecoes;
 
 public class ClienteJaCadastradoException extends Exception {
 
-    public ClienteJaCadastradoException(String message) {
-        super(message);
+    public ClienteJaCadastradoException() {
+        super("Ja existe um cliente cadastrado com este CPF.");
     }
 
-    public ClienteJaCadastradoException(String message, Throwable cause) {
-        super(message, cause);
-    }
-
-    public ClienteJaCadastradoException(Throwable cause) {
-        super(cause);
+    public ClienteJaCadastradoException(String mensagem) {
+        super(mensagem);
     }
 }

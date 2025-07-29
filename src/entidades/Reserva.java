@@ -2,7 +2,7 @@ package entidades;
 
 public class Reserva {
 
-    private int numero; // número da reserva
+    private int numero;
     private String cpfCliente;
     private String idEspaco;
     private String dataReserva;
@@ -10,8 +10,8 @@ public class Reserva {
     private String horaFim;
     private double valorTotal;
 
-    public Reserva(int numero, String cpfCliente, String idEspaco, String dataReserva,
-                   String horaInicio, String horaFim, double valorTotal) {
+    public Reserva(int numero, String cpfCliente, String idEspaco,
+                   String dataReserva, String horaInicio, String horaFim, double valorTotal) {
         this.numero = numero;
         this.cpfCliente = cpfCliente;
         this.idEspaco = idEspaco;

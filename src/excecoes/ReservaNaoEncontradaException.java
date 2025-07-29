@@ -2,15 +2,11 @@ package excecoes;
 
 public class ReservaNaoEncontradaException extends Exception {
 
-    public ReservaNaoEncontradaException(String message) {
-        super(message);
+    public ReservaNaoEncontradaException() {
+        super("Reserva nao encontrada.");
     }
 
-    public ReservaNaoEncontradaException(String message, Throwable cause) {
-        super(message, cause);
-    }
-
-    public ReservaNaoEncontradaException(Throwable cause) {
-        super(cause);
+    public ReservaNaoEncontradaException(String mensagem) {
+        super(mensagem);
     }
 }

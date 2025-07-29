@@ -1,18 +1,18 @@
 package entidades;
 
-public class SalaReuniao extends Espaco {
+public class SalaPrivada extends Espaco {
 
-    public SalaReuniao(String id, String nome, double valorHora, boolean disponivel) {
+    public SalaPrivada(String id, String nome, double valorHora, boolean disponivel) {
         super(id, nome, valorHora, disponivel);
     }
 
     @Override
     public String getTipo() {
-        return "Sala de Reunião";
+        return "Sala Privada";
     }
 
     @Override
     public String getDescricaoCompleta() {
-        return "Sala de Reunião: " + getNome() + " (ID: " + getId() + ")";
+        return "Sala Privada: " + getNome() + " (ID: " + getId() + ")";
     }
 }

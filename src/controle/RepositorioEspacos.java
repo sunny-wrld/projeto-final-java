@@ -23,7 +23,7 @@ public class RepositorioEspacos {
         mapaDeEspacos.put(espaco.getId(), espaco);
     }
 
-    public Espaco procurarEspaco(String id) {
+    public Espaco buscarEspaco(String id) {
         return mapaDeEspacos.get(id);
     }
 
@@ -33,7 +33,7 @@ public class RepositorioEspacos {
         }
     }
 
-    public void salvarEmArquivo(String nomeDoArquivo) throws FalhaPersistenciaException {
+    public void salvarArquivoEspaco(String nomeDoArquivo) throws FalhaPersistenciaException {
         try {
             ObjectOutputStream gravador = new ObjectOutputStream(new FileOutputStream(nomeDoArquivo));
             gravador.writeObject(mapaDeEspacos);
@@ -44,7 +44,7 @@ public class RepositorioEspacos {
     }
 
     @SuppressWarnings("unchecked")
-    public void carregarDeArquivo(String nomeDoArquivo) throws FalhaPersistenciaException {
+    public void carregarArquivoEspaco(String nomeDoArquivo) throws FalhaPersistenciaException {
         try {
             ObjectInputStream leitor = new ObjectInputStream(new FileInputStream(nomeDoArquivo));
             mapaDeEspacos = (Map<String, Espaco>) leitor.readObject();

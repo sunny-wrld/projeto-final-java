@@ -2,15 +2,11 @@ package excecoes;
 
 public class ServicoInvalidoException extends Exception {
 
-    public ServicoInvalidoException(String message) {
-        super(message);
+    public ServicoInvalidoException() {
+        super("Servico adicional invalido ou nao encontrado.");
     }
 
-    public ServicoInvalidoException(String message, Throwable cause) {
-        super(message, cause);
-    }
-
-    public ServicoInvalidoException(Throwable cause) {
-        super(cause);
+    public ServicoInvalidoException(String mensagem) {
+        super(mensagem);
     }
 }

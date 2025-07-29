@@ -4,17 +4,11 @@ public class EstacaoTrabalho extends Espaco {
 
     private boolean temComputador;
     private boolean temImpressora;
-    private int capacidade; // Adicionar atributo próprio
+    private int capacidade;
 
-    public EstacaoTrabalho() {
-        super("EST_001", "Estação de Trabalho Padrão", 20.0);
-        this.capacidade = 1;
-        this.temComputador = false;
-        this.temImpressora = false;
-    }
-
-    public EstacaoTrabalho(String id, String nome, double valorHora, int capacidade, boolean temComputador, boolean temImpressora) {
-        super(id, nome, valorHora);
+    public EstacaoTrabalho(String id, String nome, double valorHora,
+                           boolean disponivel, int capacidade, boolean temComputador, boolean temImpressora) {
+        super(id, nome, valorHora, disponivel);
         this.capacidade = capacidade;
         this.temComputador = temComputador;
         this.temImpressora = temImpressora;
@@ -50,13 +44,24 @@ public class EstacaoTrabalho extends Espaco {
     }
 
     @Override
+    public String getDescricaoCompleta() {
+        return "Estação de Trabalho: " + getNome() +
+                "\nID: " + getId() +
+                "\nValor/hora: R$ " + getValorHora() +
+                "\nDisponível: " + (estaDisponivel() ? "Sim" : "Não") +
+                "\nCapacidade: " + capacidade +
+                "\nComputador: " + (temComputador ? "Sim" : "Não") +
+                "\nImpressora: " + (temImpressora ? "Sim" : "Não");
+    }
+
+    @Override
     public String toString() {
         return "EstacaoTrabalho{" +
                 "id=" + getId() +
                 ", nome='" + getNome() + '\'' +
                 ", valorHora=" + getValorHora() +
-                ", capacidade=" + getCapacidade() +
-                ", disponivel=" + isDisponivel() +
+                ", capacidade=" + capacidade +
+                ", disponivel=" + estaDisponivel() +
                 ", temComputador=" + temComputador +
                 ", temImpressora=" + temImpressora +
                 '}';
