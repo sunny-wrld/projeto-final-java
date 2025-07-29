@@ -13,6 +13,7 @@ public class SalaPrivada extends Espaco {
 
     @Override
     public String getDescricaoCompleta() {
-        return "Sala Privada: " + getNome() + " (ID: " + getId() + ")";
+        return "Sala Privada: " + getNome() +
+                " ID: " + getId();
     }
 }

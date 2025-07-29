@@ -12,8 +12,7 @@ public class Locker implements ServicoAdicional {
 
     @Override
     public String getDescricao() {
-        return "Locker (" + quantidade + " unidades)";
-    }
+        return "Locker " + quantidade + " unidades"; }
 
     @Override
     public double getValorTotal() {

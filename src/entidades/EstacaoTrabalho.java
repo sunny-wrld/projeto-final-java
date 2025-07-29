@@ -16,7 +16,7 @@ public class EstacaoTrabalho extends Espaco {
 
     @Override
     public String getTipo() {
-        return "Estação de Trabalho";
+        return "Estacao de Trabalho";
     }
 
     public int getCapacidade() {
@@ -45,14 +45,33 @@ public class EstacaoTrabalho extends Espaco {
 
     @Override
     public String getDescricaoCompleta() {
-        return "Estação de Trabalho: " + getNome() +
+        String texto = "Estação de Trabalho: " + getNome() +
                 "\nID: " + getId() +
-                "\nValor/hora: R$ " + getValorHora() +
-                "\nDisponível: " + (estaDisponivel() ? "Sim" : "Não") +
-                "\nCapacidade: " + capacidade +
-                "\nComputador: " + (temComputador ? "Sim" : "Não") +
-                "\nImpressora: " + (temImpressora ? "Sim" : "Não");
+                "\nValor/hora: R$ " + getValorHora();
+
+        if (estaDisponivel()) {
+            texto += "\nDisponível: Sim";
+        } else {
+            texto += "\nDisponível: Não";
+        }
+
+        texto += "\nCapacidade: " + capacidade;
+
+        if (temComputador) {
+            texto += "\nTem computador: Sim";
+        } else {
+            texto += "\nTem computador: Não";
+        }
+
+        if (temImpressora) {
+            texto += "\nTem impressora: Sim";
+        } else {
+            texto += "\nTem impressora: Não";
+        }
+
+        return texto;
     }
+
 
     @Override
     public String toString() {

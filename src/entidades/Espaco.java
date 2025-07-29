@@ -43,9 +43,9 @@ public abstract class Espaco {
         String status;
 
         if (disponivel) {
-            status = "Disponível";
+            status = "Disponivel";
         } else {
-            status = "Indisponível";
+            status = "Indisponivel";
         }
 
         return getTipo() + ": " + nome + " ID: " + id +

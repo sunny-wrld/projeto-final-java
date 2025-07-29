@@ -12,7 +12,8 @@ public class CafePremium implements ServicoAdicional {
 
     @Override
     public String getDescricao() {
-        return "Café Premium (" + quantidadeDeCopos + " copos)";
+        return "Cafr Premium " +
+                quantidadeDeCopos + " copos";
     }
 
     @Override

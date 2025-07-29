@@ -10,7 +10,7 @@ public class MenuClientes {
         int opcao;
 
         do {
-            System.out.println("\n--- MENU CLIENTES ---");
+            System.out.println(" 3 mundiais ");
             System.out.println("1. Cadastrar novo cliente");
             System.out.println("2. Listar clientes");
             System.out.println("3. Buscar cliente por CPF");
@@ -21,22 +21,21 @@ public class MenuClientes {
 
             switch (opcao) {
                 case 1:
-                    System.out.println("Cadastrar cliente...");
-                    // chamar método de cadastro
+                    System.out.println("Cadastrar cliente");
                     break;
                 case 2:
-                    System.out.println("Listar clientes...");
+                    System.out.println("Listar clientes");
                     // chamar método de listagem
                     break;
                 case 3:
-                    System.out.println("Buscar cliente...");
+                    System.out.println("Buscar cliente");
                     // chamar método de busca
                     break;
                 case 0:
-                    System.out.println("Voltando...");
+                    System.out.println("Voltando");
                     break;
                 default:
-                    System.out.println("Opção inválida.");
+                    System.out.println("Opcao inválida");
             }
         } while (opcao != 0);
     }

@@ -12,7 +12,7 @@ public class RecebimentoCorrespondencia implements ServicoAdicional {
 
     @Override
     public String getDescricao() {
-        return "Recebimento de Correspondência (" + quantidade + ")";
+        return "Recebimento de Correspondencia " + quantidade;
     }
 
     @Override

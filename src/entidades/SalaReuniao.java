@@ -21,7 +21,7 @@ public class SalaReuniao extends Espaco {
 
     @Override
     public String getTipo() {
-        return "Sala de Reunião";
+        return "Sala de Reuniao";
     }
 
     @Override
@@ -29,7 +29,7 @@ public class SalaReuniao extends Espaco {
         String descricao = "Sala de Reunião: " + getNome();
         descricao += " Capacidade: " + capacidade;
         descricao += " Tem projetor: " + temProjetor;
-        descricao += " Tem Wi-Fi: " + temWifi;
+        descricao += " Tem Wii-Fi: " + temWifi;
         descricao += " Tem quadro: " + temQuadro;
         descricao += " Tem ar-condicionado: " + temArcondicionado;
         return descricao;
@@ -57,7 +57,9 @@ public class SalaReuniao extends Espaco {
 
     @Override
     public String toString() {
-        return getId() + "," + getNome() + "," + getValorHora() + "," + estaDisponivel() + "," +
-                capacidade + "," + temProjetor + "," + temWifi + "," + temQuadro + "," + temArcondicionado;
+        return getId() + "," + getNome() + ","
+                + getValorHora() + "," + estaDisponivel() +
+                "," + capacidade + "," + temProjetor + "," +
+                temWifi + "," + temQuadro + "," + temArcondicionado;
     }
 }

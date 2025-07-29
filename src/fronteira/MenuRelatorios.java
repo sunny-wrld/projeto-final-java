@@ -10,26 +10,27 @@ public class MenuRelatorios {
         int opcao;
 
         do {
-            System.out.println("\n--- MENU RELATÓRIOS ---");
-            System.out.println("1. Relatório de reservas por cliente");
-            System.out.println("2. Relatório de espaços disponíveis");
+            System.out.println("3 mundiais");
+            System.out.println();
+            System.out.println("1. Relatorio de reservas por cliente");
+            System.out.println("2. Relatorio de espacos disponiveis");
             System.out.println("0. Voltar ao menu principal");
-            System.out.print("Escolha uma opção: ");
+            System.out.print("Escolha uma opcao: ");
             opcao = teclado.nextInt();
             teclado.nextLine();
 
             switch (opcao) {
                 case 1:
-                    System.out.println("Gerar relatório por cliente...");
+                    System.out.println("Gerar relatorio por cliente");
                     break;
                 case 2:
-                    System.out.println("Gerar relatório de espaços...");
+                    System.out.println("Gerar relatorio de espaços");
                     break;
                 case 0:
-                    System.out.println("Voltando...");
+                    System.out.println("Voltando");
                     break;
                 default:
-                    System.out.println("Opção inválida.");
+                    System.out.println("Opcao inválida");
             }
         } while (opcao != 0);
     }

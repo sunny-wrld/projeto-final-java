@@ -51,8 +51,9 @@ public class Reserva {
 
     @Override
     public String toString() {
-        return "Reserva " + numero + " | Cliente: " + cpfCliente + " | Espaço: " + idEspaco +
-                " | Data: " + dataReserva + " | " + horaInicio + " às " + horaFim +
-                " | Total: R$ " + valorTotal;
+        return "Reserva " + numero + " Cliente: " + cpfCliente +
+                " Espaco: " + idEspaco + " Data: " + dataReserva
+                + horaInicio + " as " + horaFim +
+                " Total: R$ " + valorTotal;
     }
 }

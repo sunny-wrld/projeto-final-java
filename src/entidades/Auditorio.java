@@ -8,11 +8,12 @@ public class Auditorio extends Espaco {
 
     @Override
     public String getTipo() {
-        return "Auditório";
+        return "Auditorio";
     }
 
     @Override
     public String getDescricaoCompleta() {
-        return "Auditório: " + getNome() + " (ID: " + getId() + ")";
+        return "Auditorio: " + getNome() +
+                " ID: " + getId() ;
     }
 }

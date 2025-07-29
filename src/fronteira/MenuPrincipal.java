@@ -15,13 +15,13 @@ public class MenuPrincipal {
         int opcao;
 
         do {
-            System.out.println("\n===== MENU PRINCIPAL =====");
+            System.out.println("3 mundiais");
             System.out.println("1. Clientes");
-            System.out.println("2. Espaços");
+            System.out.println("2. Espacos");
             System.out.println("3. Reservas");
-            System.out.println("4. Relatórios");
+            System.out.println("4. Relatorios");
             System.out.println("0. Sair");
-            System.out.print("Escolha uma opção: ");
+            System.out.print("Escolha uma opcao: ");
             opcao = teclado.nextInt();
             teclado.nextLine(); // limpar o buffer
 
@@ -39,10 +39,10 @@ public class MenuPrincipal {
                     menuRelatorios.exibirMenu();
                     break;
                 case 0:
-                    System.out.println("Encerrando o sistema. Até logo!");
+                    System.out.println("Encerrando o sistema. Até o proximo mundial do SP");
                     break;
                 default:
-                    System.out.println("Opção inválida. Tente novamente.");
+                    System.out.println("Opção invalida. Tente novamente");
             }
 
         } while (opcao != 0);

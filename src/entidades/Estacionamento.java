@@ -12,7 +12,8 @@ public class Estacionamento implements ServicoAdicional {
 
     @Override
     public String getDescricao() {
-        return "Estacionamento (" + duracaoHoras + " horas)";
+        return "Estacionamento "
+                + duracaoHoras + " horas";
     }
 
     @Override

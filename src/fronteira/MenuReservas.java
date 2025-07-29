@@ -10,26 +10,26 @@ public class MenuReservas {
         int opcao;
 
         do {
-            System.out.println("MENU RESERVAS");
+            System.out.println("3 mundiais");
             System.out.println("1. Fazer reserva");
             System.out.println("2. Listar todas as reservas");
             System.out.println("0. Voltar ao menu principal");
-            System.out.print("Escolha uma opção: ");
+            System.out.print("Escolha uma opcao: ");
             opcao = teclado.nextInt();
             teclado.nextLine();
 
             switch (opcao) {
                 case 1:
-                    System.out.println("Fazer nova reserva...");
+                    System.out.println("Fazer nova reserva");
                     break;
                 case 2:
-                    System.out.println("Listar reservas...");
+                    System.out.println("Listar reservas");
                     break;
                 case 0:
-                    System.out.println("Voltando...");
+                    System.out.println("Voltando");
                     break;
                 default:
-                    System.out.println("Opção inválida.");
+                    System.out.println("Opção inválida");
             }
         } while (opcao != 0);
     }

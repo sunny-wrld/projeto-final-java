@@ -10,30 +10,30 @@ public class MenuEspacos {
         int opcao;
 
         do {
-            System.out.println("\n--- MENU ESPAÇOS ---");
-            System.out.println("1. Cadastrar espaço");
-            System.out.println("2. Listar todos os espaços");
-            System.out.println("3. Buscar espaço por ID");
+            System.out.println("3 mundiais");
+            System.out.println("1. Cadastrar espaco");
+            System.out.println("2. Listar todos os espacs");
+            System.out.println("3. Buscar espaco por ID");
             System.out.println("0. Voltar ao menu principal");
-            System.out.print("Escolha uma opção: ");
+            System.out.print("Escolha uma opcao: ");
             opcao = teclado.nextInt();
             teclado.nextLine();
 
             switch (opcao) {
                 case 1:
-                    System.out.println("Cadastrar espaço...");
+                    System.out.println("Cadastrar espaco");
                     break;
                 case 2:
-                    System.out.println("Listar espaços...");
+                    System.out.println("Listar espacos");
                     break;
                 case 3:
-                    System.out.println("Buscar espaço...");
+                    System.out.println("Buscar espaco");
                     break;
                 case 0:
-                    System.out.println("Voltando...");
+                    System.out.println("Voltando");
                     break;
                 default:
-                    System.out.println("Opção inválida.");
+                    System.out.println("Opção invalida");
             }
         } while (opcao != 0);
     }
