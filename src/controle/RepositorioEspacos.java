@@ -7,10 +7,6 @@ import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Repositório responsável por armazenar os espaços de trabalho do coworking.
- * O ID do espaço é a chave no mapa.
- */
 public class RepositorioEspacos {
 
     private Map<String, Espaco> mapaDeEspacos;
