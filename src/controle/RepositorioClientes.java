@@ -1,76 +1,75 @@
 package controle;
 
-import entidades.Cliente;
+import entidades.Espaco;
 import excecoes.FalhaPersistenciaException;
 
 import java.io.*;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
-public class RepositorioClientes {
+// Repositório responsável por armazenar espaços de coworking em arquivo de texto
+public class RepositorioEspacos {
 
-    private Map<String, Cliente> clientes = new HashMap<>();
+    private List<Espaco> listaDeEspacos;
 
-    public void adicionarCliente(Cliente cliente) {
-        clientes.put(cliente.getCpf(), cliente);
+    public RepositorioEspacos() {
+        listaDeEspacos = new ArrayList<>();
     }
 
-    public Cliente buscarCliente(String cpf) {
-        return clientes.get(cpf);
+    public void adicionarEspaco(Espaco espaco) {
+        listaDeEspacos.add(espaco);
+    }
+
+    public Espaco buscarEspaco(String id) {
+        for (Espaco e : listaDeEspacos) {
+            if (e.getId().equals(id)) {
+                return e;
+            }
+        }
+        return null;
     }
 
     public void listarTodos() {
-        for (Cliente c : clientes.values()) {
-            System.out.println(c);
+        for (Espaco espaco : listaDeEspacos) {
+            System.out.println(espaco);
         }
     }
 
-    public void salvarArquivo(String nomeArquivo) throws FalhaPersistenciaException {
-        try {
-            FileOutputStream arquivo = new FileOutputStream(nomeArquivo, false);
-            ObjectOutputStream gravador = new ObjectOutputStream(arquivo);
-            gravador.writeObject(clientes);
-            gravador.close();
-        } catch (IOException e) {
-            throw new FalhaPersistenciaException("Erro ao salvar os dados no arquivo: " + nomeArquivo);
-        }
-    }
-
-    public void carregarArquivo(String nomeArquivo) throws FalhaPersistenciaException {
-        try {
-            FileInputStream arquivo = new FileInputStream(nomeArquivo);
-            ObjectInputStream leitor = new ObjectInputStream(arquivo);
-            Object objetoLido = leitor.readObject();
-            leitor.close();
-
-            if (objetoLido instanceof Map<?, ?> mapaGenerico) {
-                boolean tiposOk = true;
-                for (Map.Entry<?, ?> entrada : mapaGenerico.entrySet()) {
-                    if (!(entrada.getKey() instanceof String) || !(entrada.getValue() instanceof Cliente)) {
-                        tiposOk = false;
-                        break;
-                    }
-                }
-
-                if (tiposOk) {
-                    clientes = new HashMap<>();
-                    for (Map.Entry<?, ?> entrada : mapaGenerico.entrySet()) {
-                        String cpf = (String) entrada.getKey();
-                        Cliente cliente = (Cliente) entrada.getValue();
-                        clientes.put(cpf, cliente);
-                    }
-                } else {
-                    throw new FalhaPersistenciaException("Erro: o arquivo contém dados incompatíveis.");
-                }
-            } else {
-                throw new FalhaPersistenciaException("Erro: o arquivo não contém um mapa de clientes.");
+    public void salvarEmArquivo(String nomeArquivo) throws FalhaPersistenciaException {
+        try (BufferedWriter escritor = new BufferedWriter(new FileWriter(nomeArquivo))) {
+            for (Espaco e : listaDeEspacos) {
+                escritor.write(e.getId() + "," +
+                        e.getNome() + "," +
+                        e.getValorHora() + "," +
+                        e.estaDisponivel()); // supondo método boolean
+                escritor.newLine();
             }
+        } catch (IOException e) {
+            throw new FalhaPersistenciaException("Erro ao salvar os espaços no arquivo.");
+        }
+    }
 
-        } catch (FileNotFoundException e) {
-            System.out.println("Arquivo de clientes não encontrado. Criando novo repositório.");
-            clientes = new HashMap<>();
-        } catch (IOException | ClassNotFoundException e) {
-            throw new FalhaPersistenciaException("Erro ao carregar os dados do arquivo: " + nomeArquivo);
+    public void carregarDoArquivo(String nomeArquivo) throws FalhaPersistenciaException {
+        listaDeEspacos.clear();
+
+        try (Scanner leitor = new Scanner(new File(nomeArquivo))) {
+            while (leitor.hasNextLine()) {
+                String linha = leitor.nextLine();
+                String[] partes = linha.split(",");
+
+                if (partes.length >= 4) {
+                    String id = partes[0];
+                    String nome = partes[1];
+                    double valorHora = Double.parseDouble(partes[2]);
+                    boolean disponivel = Boolean.parseBoolean(partes[3]);
+
+                    Espaco espaco = new Espaco(id, nome, valorHora, disponivel); // adaptado
+                    listaDeEspacos.add(espaco);
+                }
+            }
+        } catch (IOException e) {
+            throw new FalhaPersistenciaException("Erro ao carregar os espaços do arquivo.");
         }
     }
 }

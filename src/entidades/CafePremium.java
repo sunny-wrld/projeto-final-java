@@ -2,29 +2,21 @@ package entidades;
 
 public class CafePremium implements ServicoAdicional {
 
-    private static final long serialVersionUID = 1L;
+    private int quantidadeDeCopos;
+    private double valorPorCopo;
 
-    private double valor;
-
-    public CafePremium(double valor) {
-        this.valor = valor;
+    public CafePremium(int quantidadeDeCopos, double valorPorCopo) {
+        this.quantidadeDeCopos = quantidadeDeCopos;
+        this.valorPorCopo = valorPorCopo;
     }
 
     @Override
     public String getDescricao() {
-        return "Café Premium";
+        return "Café Premium (" + quantidadeDeCopos + " copos)";
     }
 
     @Override
     public double getValorTotal() {
-        return valor;
-    }
-
-    public double getValor() {
-        return valor;
-    }
-
-    public void setValor(double valor) {
-        this.valor = valor;
+        return quantidadeDeCopos * valorPorCopo;
     }
 }

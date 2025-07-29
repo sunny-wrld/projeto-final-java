@@ -2,8 +2,6 @@ package entidades;
 
 public class EstacaoTrabalho extends Espaco {
 
-    private static final long serialVersionUID = 1L;
-
     private boolean temComputador;
     private boolean temImpressora;
     private int capacidade; // Adicionar atributo próprio

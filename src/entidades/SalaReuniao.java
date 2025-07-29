@@ -2,8 +2,6 @@ package entidades;
 
 public class SalaReuniao extends Espaco {
 
-    private static final long serialVersionUID = 1L;
-
     private boolean temProjetor;
     private boolean temWifi;
     private boolean temQuadro;

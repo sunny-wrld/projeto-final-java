@@ -1,20 +1,17 @@
 package entidades;
 
-import java.io.Serializable;
-
-public abstract class Espaco implements Serializable {
-    private static final long serialVersionUID = 1L;
+public abstract class Espaco {
 
     private String id;
     private String nome;
     private double valorHora;
     private boolean disponivel;
 
-    public Espaco(String id, String nome, double valorHora) {
+    public Espaco(String id, String nome, double valorHora, boolean disponivel) {
         this.id = id;
         this.nome = nome;
         this.valorHora = valorHora;
-        this.disponivel = true;
+        this.disponivel = disponivel;
     }
 
     public String getId() {
@@ -29,7 +26,7 @@ public abstract class Espaco implements Serializable {
         return valorHora;
     }
 
-    public boolean isDisponivel() {
+    public boolean estaDisponivel() {
         return disponivel;
     }
 
@@ -37,26 +34,21 @@ public abstract class Espaco implements Serializable {
         this.disponivel = disponivel;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public void setValorHora(double valorHora) {
-        this.valorHora = valorHora;
-    }
-
     public abstract String getTipo();
 
-    public String getDescricaoCompleta() {
-        return "ID: " + id +
-                " | Nome: " + nome +
-                " | Tipo: " + getTipo() +
-                " | Valor/hora: R$" + valorHora +
-                " | Disponível: " + (disponivel ? "Sim" : "Não");
-    }
+    public abstract String getDescricaoCompleta();
 
     @Override
     public String toString() {
-        return getDescricaoCompleta();
+        String status;
+
+        if (disponivel) {
+            status = "Disponível";
+        } else {
+            status = "Indisponível";
+        }
+
+        return getTipo() + ": " + nome + " | ID: " + id + " | R$ " + valorHora + "/hora | " + status;
     }
+
 }

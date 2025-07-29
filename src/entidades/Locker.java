@@ -1,66 +1,22 @@
 package entidades;
 
-public class Locker extends Espaco {
+public class Locker implements ServicoAdicional {
 
-    private static final long serialVersionUID = 1L;
+    private int quantidade;
+    private double valorPorUnidade;
 
-    private String tamanho;
-    private boolean temChave;
-    private boolean temCadeado;
-
-    public Locker() {
-        super("1", "Locker", 15.0);
-        this.tamanho = "Medio";
-        this.temChave = false;
-        this.temCadeado = false;
-    }
-
-    public Locker(String id, String nome, double valorHora, String tamanho, boolean temChave, boolean temCadeado) {
-        super(id, nome, valorHora);
-        this.tamanho = tamanho;
-        this.temChave = temChave;
-        this.temCadeado = temCadeado;
+    public Locker(int quantidade, double valorPorUnidade) {
+        this.quantidade = quantidade;
+        this.valorPorUnidade = valorPorUnidade;
     }
 
     @Override
-    public String getTipo() {
-        return "Locker";
-    }
-
-    public String getTamanho() {
-        return tamanho;
-    }
-
-    public void setTamanho(String tamanho) {
-        this.tamanho = tamanho;
-    }
-
-    public boolean isTemChave() {
-        return temChave;
-    }
-
-    public void setTemChave(boolean temChave) {
-        this.temChave = temChave;
-    }
-
-    public boolean isTemCadeado() {
-        return temCadeado;
-    }
-
-    public void setTemCadeado(boolean temCadeado) {
-        this.temCadeado = temCadeado;
+    public String getDescricao() {
+        return "Locker (" + quantidade + " unidades)";
     }
 
     @Override
-    public String toString() {
-        return "Locker{" +
-                "id=" + getId() +
-                ", nome='" + getNome() + '\'' +
-                ", valorHora=" + getValorHora() +
-                ", disponivel=" + isDisponivel() +
-                ", tamanho='" + tamanho + '\'' +
-                ", temChave=" + temChave +
-                ", temCadeado=" + temCadeado +
-                '}';
+    public double getValorTotal() {
+        return quantidade * valorPorUnidade;
     }
 }
